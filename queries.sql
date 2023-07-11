@@ -48,12 +48,12 @@ SELECT * FROM animals;
 
 -- group by queries
 
-SELECT COUNT(name) AS animals_count FROM animals;
-SELECT COUNT(escape_attempts) AS escape_attempts_count FROM animals 
-WHERE escape_attempts > 0; 
+SELECT COUNT(*) AS animals_count FROM animals;
+SELECT COUNT(*) AS escape_attempts_count FROM animals 
+WHERE escape_attempts = 0; 
 SELECT AVG(weight_kg) AS avg_weight FROM animals;
-SELECT neutered, SUM(escape_attempts) AS most_escape FROM animals
-GROUP BY neutered ORDER BY most_escape DESC;
+SELECT neutered, AVG(escape_attempts) FROM animals
+GROUP BY neutered ORDER BY neutered DESC;
 SELECT species, MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight
 FROM animals
 GROUP BY species;
