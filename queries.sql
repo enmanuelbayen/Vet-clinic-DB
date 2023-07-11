@@ -9,7 +9,7 @@ SELECT * FROM animals WHERE neutered = true;
 SELECT * FROM animals WHERE name != 'Gabumon';
 SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 
-
+-- transaction
 BEGIN;
 UPDATE animals
 SET species='unspecified'
@@ -45,3 +45,19 @@ ROLLBACK TO SP2;
 UPDATE animals SET weight_kg= weight_kg*-1 WHERE weight_kg < 0;
 COMMIT;
 SELECT * FROM animals;
+
+-- group by queries
+
+SELECT COUNT(name) AS animals_count FROM animals;
+SELECT COUNT(escape_attempts) AS escape_attempts_count FROM animals 
+WHERE escape_attempts > 0; 
+SELECT AVG(weight_kg) AS avg_weight FROM animals;
+SELECT neutered, SUM(escape_attempts) AS most_escape FROM animals
+GROUP BY neutered ORDER BY most_escape DESC;
+SELECT species, MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight
+FROM animals
+GROUP BY species;
+SELECT species, AVG(escape_attempts) AS avg_escape_attempts
+FROM animals
+WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31'
+GROUP BY species;
