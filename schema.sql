@@ -21,11 +21,20 @@ CREATE TABLE species (
     name VARCHAR(100)
 );
 
--- alter table animals
+-- -- Alter table 
+
+-- Animal
 ALTER TABLE animals 
 DROP COLUMN species,
 ADD COLUMN species_id INTEGER REFERENCES species(id),
 ADD COLUMN owner_id INTEGER REFERENCES owners(id);
+
+-- Add an email column - owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+-- Change name of column on table visits
+alter table visits RENAME COLUMN visit_date TO date_of_visit;
+
 
 -- JOIN TABLES
 
@@ -46,3 +55,8 @@ CREATE TABLE visits(
     vet_id INT REFERENCES vets(id),
     visit_date DATE,
 );
+
+-- indexes CREATE
+BEGIN;
+CREATE INDEX animal_id_asc ON visits(animal_id ASC);
+COMMIT;

@@ -182,3 +182,8 @@ WHERE vets.name = 'Maisy Smith'
 GROUP BY species.name
 ORDER BY COUNT(species.name) DESC
 FETCH FIRST 1 ROW ONLY;
+
+-- -- QUERY INDEXES for perfomance update result
+
+-- firts 
+explain analyze SELECT COUNT(*) FROM visits where animal_id = 4;
