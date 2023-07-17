@@ -56,7 +56,8 @@ CREATE TABLE visits(
     visit_date DATE,
 );
 
--- indexes CREATE
 BEGIN;
 CREATE INDEX animal_id_asc ON visits(animal_id ASC);
+CREATE INDEX vet_id_asc ON visits(vet_id ASC);
+CREATE INDEX owner_email ON owners (email varchar_pattern_ops);
 COMMIT;

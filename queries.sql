@@ -183,7 +183,7 @@ GROUP BY species.name
 ORDER BY COUNT(species.name) DESC
 FETCH FIRST 1 ROW ONLY;
 
--- -- QUERY INDEXES for perfomance update result
 
--- firts 
 explain analyze SELECT COUNT(*) FROM visits where animal_id = 4;
+EXPLAIN ANALYZE SELECT vet_id FROM visits where vet_id = 2; 
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
